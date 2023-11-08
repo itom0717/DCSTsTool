@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Collections;
 using System.Text.RegularExpressions;
+using System.Drawing.Drawing2D;
 
 namespace DCSTsTool.Data
 {
@@ -60,6 +61,17 @@ namespace DCSTsTool.Data
             }
 
             return textData;
+        }
+
+        /// <summary>
+        /// mizファイルを列挙
+        /// </summary>
+        /// <param name="tgtPath"></param>
+        /// <returns></returns>
+        private string[] GetDictionaryFileList(string tgtPath, bool isSubDir)
+        {
+            string[] list = Directory.GetFiles(tgtPath, "dictionary", (isSubDir ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
+            return list;
         }
 
         /// <summary>
@@ -162,6 +174,51 @@ namespace DCSTsTool.Data
             }
 
         }
+
+
+        /// <summary>
+        /// テキスト取得JP
+        /// </summary>
+        public TextData GetTextJP(string tgtPath)
+        {
+            if (string.IsNullOrWhiteSpace(tgtPath) || !Directory.Exists(tgtPath))
+            {
+                return null;
+            }
+
+            if (tgtPath.Substring(tgtPath.Length - 1, 1) != Path.DirectorySeparatorChar.ToString())
+            {
+                tgtPath = tgtPath + Path.DirectorySeparatorChar.ToString();
+            }
+
+
+            //ファイルを列挙
+            var list = this.GetDictionaryFileList(tgtPath, true);
+            var textData = new TextData();
+
+            foreach (var f in list)
+            {
+                string dictionaryText = "";
+                using (StreamReader sr = new StreamReader(f, System.Text.Encoding.UTF8))
+                {
+                    //すべて読み込む
+                    dictionaryText = sr.ReadToEnd();
+                }
+
+                if (!string.IsNullOrWhiteSpace(dictionaryText))
+                {
+                    string f2 = Path.GetDirectoryName(f);
+                    f2 = Path.GetDirectoryName(f2);
+                    f2 = Path.GetDirectoryName(f2);
+                    this.GetTextData(dictionaryText, f2, textData);
+                }
+            }
+
+            return textData;
+        }
+
+
+
 
 
 

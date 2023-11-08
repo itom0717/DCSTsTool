@@ -35,7 +35,7 @@ namespace DCSTsTool.Data
                 {
 
                     ws.Cell(rowIndex, 1).Value = t.Path;
-                    ws.Cell(rowIndex, 2).Value = t.Filename;
+                    ws.Cell(rowIndex, 2).Value = Path.GetFileNameWithoutExtension(t.Filename);
                     ws.Cell(rowIndex, 3).Value = t.ID;
                     ws.Cell(rowIndex, 4).Value = t.SrcText;
                     ws.Cell(rowIndex, 5).Value = "";

@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Office2010.Excel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,7 +70,7 @@ namespace DCSTsTool.Data
 
 
             //Dicに追加
-            string keyFilename = text.Filename.ToLower();
+            string keyFilename = Path.GetFileNameWithoutExtension(text.Filename.ToLower());
             if (!this.TextListDic.ContainsKey(keyFilename))
             {
                 this.TextListDic.Add(keyFilename, new Dictionary<string, Text>());

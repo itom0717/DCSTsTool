@@ -71,5 +71,22 @@ namespace DCSTsTool.Forms
             this.Close();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var mizFile = new Data.MizFile();
+            var textData = mizFile.GetTextJP(@"F:\TEMP\DCSTsTool\TestData\日本語化\FA-18トレーニングミッション1-20");
+
+
+            if (textData != null)
+            {
+                //データ保存
+                var excelData = new ExcelData();
+                excelData.ExportExcelData(@"F:\TEMP\DCSTsTool\TestData\TextDataJP.xlsx", textData);
+
+            }
+
+            this.Close();
+
+        }
     }
 }
