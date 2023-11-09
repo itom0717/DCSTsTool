@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,29 +23,60 @@ namespace DCSTsTool.Forms
         }
 
 
+        /// <summary>
+        /// ベースパス
+        /// </summary>
+        private const string BasePath = @"C:\Repository\社内Tool\Tool\TestData";
+        //private const string BasePath = @"F:\TEMP\DCSTsTool\TestData";
+
 
         /// <summary>
         /// テキスト取得
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button2_Click(object sender, EventArgs e)
+        private void GetOrgTextButton_Click(object sender, EventArgs e)
         {
+            const int lang = 1;//英語
+
             var mizFile = new Data.MizFile();
-            var textData = mizFile.GetText(@"F:\TEMP\DCSTsTool\TestData\DCS Mission");
+            var textData = mizFile.GetText(Path.Combine(BasePath, @"DCS Mission"));
 
 
-            if(textData != null)
+            if (textData != null)
             {
                 //データ保存
                 var excelData = new ExcelData();
-                excelData.ExportExcelData(@"F:\TEMP\DCSTsTool\TestData\TextData.xlsx", textData);
+                excelData.ExportExcelData(Path.Combine(BasePath, @"TextDataOrg.xlsx"), textData, lang);
 
             }
 
             this.Close();
         }
 
+        /// <summary>
+        /// 翻訳済テキスト取得
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GetTranslatTextButton_Click(object sender, EventArgs e)
+        {
+
+            const int lang = 2;//日本語
+
+            var mizFile = new Data.MizFile();
+            var textData = mizFile.GetTextJP(Path.Combine(BasePath, @"folder"));
+
+
+            if (textData != null)
+            {
+                //データ保存
+                var excelData = new ExcelData();
+                excelData.ExportExcelData(Path.Combine(BasePath, @"TextDataJP.xlsx"), textData, lang);
+            }
+
+            this.Close();
+        }
 
 
 
@@ -53,40 +85,18 @@ namespace DCSTsTool.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
+        private void TextWriteButton_Click(object sender, EventArgs e)
         {
-            //TEST
-
-            //var mizFile = new Data.MizFile();
-            //mizFile.Test();
-
             //データ取得
             var excelData = new ExcelData();
-            var textData = excelData.ImportExcelData(@"F:\TEMP\DCSTsTool\TestData\TextData.xlsx");
+            var textData = excelData.ImportExcelData(Path.Combine(BasePath, @"TextDataTr.xlsx"));
 
             //データ書き換え
             var mizFile = new Data.MizFile();
-            mizFile.ChangeText(@"F:\TEMP\DCSTsTool\TestData\DCS Mission JPN", textData);
+            mizFile.ChangeText(Path.Combine(BasePath, @"DCS Mission JPN"), textData);
 
             this.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var mizFile = new Data.MizFile();
-            var textData = mizFile.GetTextJP(@"F:\TEMP\DCSTsTool\TestData\日本語化\FA-18トレーニングミッション1-20");
-
-
-            if (textData != null)
-            {
-                //データ保存
-                var excelData = new ExcelData();
-                excelData.ExportExcelData(@"F:\TEMP\DCSTsTool\TestData\TextDataJP.xlsx", textData);
-
-            }
-
-            this.Close();
-
-        }
     }
 }

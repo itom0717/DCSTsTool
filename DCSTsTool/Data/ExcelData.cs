@@ -21,8 +21,16 @@ namespace DCSTsTool.Data
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="textData"></param>
-        public void ExportExcelData(string filename, Data.TextData textData)
+        public void ExportExcelData(string filename, Data.TextData textData, int lang)
         {
+            if(!File.Exists(filename))
+            {
+                string templateFile = Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "TextData.xlsx");
+                File.Copy(templateFile, filename, true);
+            }
+
+
+
             // Excelファイルを開く
             using (var wb = new XLWorkbook(filename))
             {
@@ -37,8 +45,17 @@ namespace DCSTsTool.Data
                     ws.Cell(rowIndex, 1).Value = t.Path;
                     ws.Cell(rowIndex, 2).Value = Path.GetFileNameWithoutExtension(t.Filename);
                     ws.Cell(rowIndex, 3).Value = t.ID;
-                    ws.Cell(rowIndex, 4).Value = t.SrcText;
-                    ws.Cell(rowIndex, 5).Value = "";
+                    if(lang == 1)
+                    {
+                        ws.Cell(rowIndex, 4).Value = t.SrcText;
+                        ws.Cell(rowIndex, 5).Value = "";
+                    }
+                    else if (lang == 2)
+                    {
+                        ws.Cell(rowIndex, 4).Value = "";
+                        ws.Cell(rowIndex, 5).Value = t.SrcText;
+                    }
+
 
                     rowIndex++;
                 }

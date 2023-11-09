@@ -28,49 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.TextWriteButton = new System.Windows.Forms.Button();
+            this.GetOrgTextButton = new System.Windows.Forms.Button();
+            this.GetTranslatTextButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // TextWriteButton
             // 
-            this.button1.Location = new System.Drawing.Point(35, 115);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 68);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "テキスト書込み";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.TextWriteButton.Location = new System.Drawing.Point(12, 203);
+            this.TextWriteButton.Name = "TextWriteButton";
+            this.TextWriteButton.Size = new System.Drawing.Size(132, 68);
+            this.TextWriteButton.TabIndex = 0;
+            this.TextWriteButton.Text = "テキスト書込み";
+            this.TextWriteButton.UseVisualStyleBackColor = true;
+            this.TextWriteButton.Click += new System.EventHandler(this.TextWriteButton_Click);
             // 
-            // button2
+            // GetOrgTextButton
             // 
-            this.button2.Location = new System.Drawing.Point(35, 21);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 70);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "テキスト取得";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.GetOrgTextButton.Location = new System.Drawing.Point(12, 12);
+            this.GetOrgTextButton.Name = "GetOrgTextButton";
+            this.GetOrgTextButton.Size = new System.Drawing.Size(132, 70);
+            this.GetOrgTextButton.TabIndex = 1;
+            this.GetOrgTextButton.Text = "原文テキスト取得";
+            this.GetOrgTextButton.UseVisualStyleBackColor = true;
+            this.GetOrgTextButton.Click += new System.EventHandler(this.GetOrgTextButton_Click);
             // 
-            // button3
+            // GetTranslatTextButton
             // 
-            this.button3.Location = new System.Drawing.Point(184, 21);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(132, 70);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Jpテキスト取得";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.GetTranslatTextButton.Location = new System.Drawing.Point(12, 99);
+            this.GetTranslatTextButton.Name = "GetTranslatTextButton";
+            this.GetTranslatTextButton.Size = new System.Drawing.Size(132, 70);
+            this.GetTranslatTextButton.TabIndex = 2;
+            this.GetTranslatTextButton.Text = "翻訳テキスト取得";
+            this.GetTranslatTextButton.UseVisualStyleBackColor = true;
+            this.GetTranslatTextButton.Click += new System.EventHandler(this.GetTranslatTextButton_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 276);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(498, 491);
+            this.Controls.Add(this.GetTranslatTextButton);
+            this.Controls.Add(this.GetOrgTextButton);
+            this.Controls.Add(this.TextWriteButton);
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.ResumeLayout(false);
@@ -79,8 +79,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button TextWriteButton;
+        private System.Windows.Forms.Button GetOrgTextButton;
+        private System.Windows.Forms.Button GetTranslatTextButton;
     }
 }
